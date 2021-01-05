@@ -1,0 +1,24 @@
+<div style="margin-left: 20px; margin-top: 20px">
+  <form [formGroup]="homeForm">
+    <input type = "number"  placeholder="Id" formControlName="id">
+    <input type = "text" placeholder="Author" formControlName="author">
+    <input type = "text" placeholder="Title" formControlName="title">
+    <button type ="submit" (click)="createPost()"> Create Post</button>
+  </form>
+  <div *ngIf="response$ | async as data">
+    <p> Eklenen Kayıt =  Id:  {{data.id}} Author: {{data.author}} Title: {{data.title}}</p>
+  </div>
+  <h2> Get Posts</h2>
+  <table *ngIf="postList$ | async as data">
+    <tr>
+      <th>Id</th>
+      <th>Author</th>
+      <th>Title</th>
+    </tr>
+    <tr *ngFor="let item of data">
+      <td>{{item.id}}</td>
+      <td>{{item.author}}</td>
+      <td>{{item.title}}</td>
+    </tr>
+  </table>
+</div>
